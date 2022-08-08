@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const con = require('../database/database');
+const con = require('../../database/database');
 
 const Category = con.define('tb_categories', {
     title: {

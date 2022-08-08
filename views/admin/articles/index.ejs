@@ -1,0 +1,62 @@
+<%- include('../../partials/header') %>
+<%- include('../../partials/navbar') %>
+<div class="container">
+<h1>Artigos</h1>
+
+<a href="/admin/articles/new" class="btn btn-primary">Novo Artigo</a>
+
+<table class="table mt-3">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Título</th>
+        <th scope="col">Slug</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% articles.forEach(article => { %>
+      <tr>
+        <th scope="row"><%= article.id %></th>
+        <td><%= article.title %></td>
+        <td><%= article.slug %></td>
+        <td><%= article.tb_category.title %></td>
+        
+        <td>
+          <a href="/admin/articles/edit/<%= article.id %>" class="btn btn-warning">
+            <span class="material-icons">
+              mode_edit
+            </span>
+          </a>
+          
+          <a id="deleteLink" href="/article/delete/<%= article.id %>" class="btn btn-danger">
+            <span class="material-icons">
+              delete_forever
+            </span>
+          </a>
+        </td>
+      </tr>
+      <% }); %> 
+    </tbody>
+</table>
+</div>
+
+<%- include('../../partials/footer') %>
+<script>
+(function readyJS(win,doc){
+  if(doc.querySelectorAll("#deleteLink"))
+  {
+    for(let i = 0; i<doc.querySelectorAll('#deleteLink').length; i ++) {
+        doc.querySelectorAll('#deleteLink')[i].addEventListener('click', (event) => {
+        var decision = confirm("Você tem certeza que deseja deletar?");
+        if(decision) {
+          return true;
+        } else {
+          event.preventDefault();
+        }
+    });
+  }
+}
+})(window, document);
+</script>

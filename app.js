@@ -11,7 +11,7 @@ const categoriesController = require('./Controller/categories/CategoriesControll
 const articlesController = require('./Controller/articles/ArticlesController');
 
 const Article = require('./Model/Article');
-const Category = require('./Model/Category');
+const Category = require('./Controller/categories/Category');
 
 const router = require('./Controller/categories/CategoriesController');
 
@@ -29,13 +29,6 @@ con
 //Utilizando as rotas que estão desde diretorio
 app.use('/', categoriesController);
 app.use('/', articlesController);
-
-
-
-//Rotas
-app.get('/', (req, res) =>{
-    res.render('index');
-});
 
 
 //Inicialização do app
