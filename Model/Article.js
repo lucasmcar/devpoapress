@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const con = require('../database/database');
 
 //Importando a Model categoria
-const Category = require('../Model/Category');
+const Category = require('./Category');
 
 const Article = con.define('tb_articles', {
     title: {

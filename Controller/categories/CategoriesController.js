@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Category = require('./Category');
+const Category = require('../../Model/Category');
 const slugify = require('slugify');
 
 router.get('/admin/categories/new', (req, res) => {

@@ -1,0 +1,23 @@
+<%- include ('partials/header') %>
+<%- include ('partials/homenavbar') %>
+
+<div class="container">
+    <div class="row">
+<div class="col-6">
+<div id="list-example" class="list-group">
+    <% articles.forEach( article => { %> 
+        <a class="list-group-item list-group-item-action" href="#<%= article.slug  %>"><%= article.title %> </a>
+    <% }); %> 
+  </div>
+</div>
+<div class="col-6"></div>
+  <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
+    <% articles.forEach( article => { %> 
+        <h4 id="<%= article.sluge  %>"><% article.title  %></h4>
+        <p><%= article.body  %></p>
+    <% }); %> 
+  </div>
+  </div>
+</div>
+</div>
+

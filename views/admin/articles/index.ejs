@@ -21,7 +21,7 @@
         <th scope="row"><%= article.id %></th>
         <td><%= article.title %></td>
         <td><%= article.slug %></td>
-        <td><%= article.tb_category.title %></td>
+        <td><%= article.tbCategoryId %></td>
         
         <td>
           <a href="/admin/articles/edit/<%= article.id %>" class="btn btn-warning">
@@ -49,7 +49,7 @@
   {
     for(let i = 0; i<doc.querySelectorAll('#deleteLink').length; i ++) {
         doc.querySelectorAll('#deleteLink')[i].addEventListener('click', (event) => {
-        var decision = confirm("Você tem certeza que deseja deletar?");
+        var decision = confirm("Deseja deletar esse artigo");
         if(decision) {
           return true;
         } else {

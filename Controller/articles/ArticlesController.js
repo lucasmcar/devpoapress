@@ -4,12 +4,14 @@ const Category = require('../../Model/Category');
 const Article = require('../../Model/Article');
 const slugify = require('slugify');
 
-
+//rever
 router.get('/admin/articles', (req, res) => {
     Article.findAll({
         include: [{model: Category}]
     }).then(articles => {
-        res.render('admin/articles/index', {articles: articles});
+        if(articles != undefined) {
+            res.render('admin/articles/index', {articles: articles});
+        } 
     });
 });
 
@@ -38,6 +40,26 @@ router.post('/articles/save', (req, res) =>{
         } else {
             res.redirect('/admin/articles/new');
         }
+});
+
+//Deletando o artigo
+router.get('/articles/delete/:id', (req, res) => {
+    var id = req.params.id;
+    if(id != undefined){
+        if(!isNaN(id)) {
+            Article.destroy({
+                where: {
+                    id: id
+                }
+            }).then(() => {
+                res.redirect('/admin/articles');
+            });
+        } else {
+            res.redirect('/admin/articles');
+        }
+    } else {
+        res.redirect('/admin/articles');
+    }
 });
 
 
