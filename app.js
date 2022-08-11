@@ -9,9 +9,11 @@ app.use(express.urlencoded({extended:false}));
 
 const categoriesController = require('./Controller/categories/CategoriesController');
 const articlesController = require('./Controller/articles/ArticlesController');
+const usersController = require('./Controller/users/UserController');
 
 const Article = require('./Model/Article');
 const Category = require('./Model/Category');
+const User = require('./Model/User');
 
 const router = require('./Controller/categories/CategoriesController');
 
@@ -29,6 +31,7 @@ con
 //Utilizando as rotas que estão desde diretorio
 app.use('/', categoriesController);
 app.use('/', articlesController);
+app.use('/', usersController);
 
 app.get("/",(req, res) =>{
     Article.findAll().then(articles => {

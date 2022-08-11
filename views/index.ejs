@@ -13,8 +13,8 @@
 <div class="col-6"></div>
   <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
     <% articles.forEach( article => { %> 
-        <h4 id="<%= article.sluge  %>"><% article.title  %></h4>
-        <p><%= article.body  %></p>
+        <h4 id="<%= article.slug  %>"><%- article.title  %></h4>
+        <p><%- article.body  %></p>
     <% }); %> 
   </div>
   </div>
