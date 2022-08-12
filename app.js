@@ -2,14 +2,13 @@ const express = require('express');
 const app = express();
 const con = require('./database/database');
 
+const categoriesController = require('./Controller/categories/CategoriesController');
+const articlesController = require('./Controller/articles/ArticlesController');
+const usersController = require('./Controller/users/UsersController');
+
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
-
-
-const categoriesController = require('./Controller/categories/CategoriesController');
-const articlesController = require('./Controller/articles/ArticlesController');
-const usersController = require('./Controller/users/UserController');
 
 const Article = require('./Model/Article');
 const Category = require('./Model/Category');
