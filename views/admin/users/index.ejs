@@ -1,0 +1,7 @@
+<%- include('../../partials/header') %>
+<%- include('../../partials/navbar') %>
+
+<% users.forEach(user => { %>
+    <li><%= user.id %></li>
+    <li><%= user.email %></li>
+<% }) %>

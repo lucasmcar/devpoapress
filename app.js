@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const con = require('./database/database');
+const session = require('express-session');
 
 const categoriesController = require('./Controller/categories/CategoriesController');
 const articlesController = require('./Controller/articles/ArticlesController');
@@ -18,6 +19,20 @@ const router = require('./Controller/categories/CategoriesController');
 
 app.set('view engine', 'ejs');
 
+
+//redis
+
+//sessão
+app.use(session({
+    secret: "nodesession91255",
+    cookie: {
+        maxAge: 30000
+    },
+    resave: true,
+    saveUninitialized: true,
+    
+}));
+
 //Database
 con
     .authenticate()
@@ -31,6 +46,21 @@ con
 app.use('/', categoriesController);
 app.use('/', articlesController);
 app.use('/', usersController);
+
+app.get('/session',(req, res) =>{
+    req.session.iduser = 1,
+    req.session.email = 'teste@teste.com'
+    res.send("senssao gerada")
+});
+
+app.get('/leitura',(req, res) =>{
+    
+    res.json({
+        id: req.session.iduser,
+        email: req.session.email
+    });
+    
+});
 
 app.get("/",(req, res) =>{
     Article.findAll().then(articles => {
