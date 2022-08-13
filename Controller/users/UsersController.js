@@ -43,6 +43,11 @@ router.get('/login', (req,res)=>{
     res.render('admin/users/login');
 });
 
+router.get('/logout', (req, res) =>{
+    req.session.user = undefined;
+    res.redirect('/');
+});
+
 router.post('/authenticate', (req,res)=>{
     data = {
         email:  req.body.logemail,
@@ -59,9 +64,7 @@ router.post('/authenticate', (req,res)=>{
                     id: user.id,
                     email : user.email
                 }
-                res.status(200).json(
-                    req.json.data.user
-                );
+                res.redirect('/admin/articles');
             } else {
                 res.redirect('/login');
             }
